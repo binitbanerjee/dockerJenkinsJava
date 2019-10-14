@@ -25,7 +25,7 @@ node {
 	stage ('Run Application') {
 	    try {
 	      
-	      sh "docker run -p 8091:8081 simple"
+	      sh "docker run -D -p 8091:8081 simple"
 
 	    } catch (error) {
 		sh 'echo "run failed."'
