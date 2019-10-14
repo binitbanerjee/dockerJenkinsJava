@@ -22,8 +22,19 @@ node {
             sh 'echo "Tests passed"'
         }
     }
+	stage ('Run Application') {
+	    try {
+	      
+	      sh "docker run -p 8091:8081 simple"
 
-    stage('Push image') {
+	    } catch (error) {
+		sh 'echo "run failed."'
+	    } finally {
+	      
+	    }
+	}
+
+    /*stage('Push image') {
         /* Finally, we'll push the image with two tags:
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
@@ -32,5 +43,5 @@ node {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
-    }
+    }*/
 }
